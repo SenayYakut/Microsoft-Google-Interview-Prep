@@ -14,8 +14,8 @@ const twoSum=function(arr, target){
     for(let i=0; i<arr.length; i++){
         for(let j=i+1; j<arr.length; j++){
             if(arr[i]+arr[j]===target){
-                result.push(arr[i]);
-                result.push(arr[j]);                    
+                result.push(i);
+                result.push(j);                    
           }
         }
     }
@@ -23,19 +23,19 @@ return result;
 }
 console.log(twoSum([1,2,3,4,5,6], 7));
 
-//hash table solution
-
-const twoSum=function(arr, target){
-    let result={};
-    for(var i=0; i<arr.length; i++){
-        let num=arr[i];
-        result[num]=i;
+//hash table solution //best solution it is constant O(1);
+function twoSum(arr, target) {
+    let numObject = {};
+    for (var i = 0; i < arr.length; i++) {
+        let thisNum = arr[i];
+        numObject[thisNum] = i;
     }
-    for(var i=0; i<arr.length; i++){
-        let diff=target-arr[i];
-        if(result.hasOwnProperty(diff) && result[diff]!==i){
-            return [i, result[diff]];
+    for (var i = 0; i < arr.length; i++) {
+        let diff = target - arr[i];
+        if (numObject.hasOwnProperty(diff) && numObject[diff] !== i) {
+            return [i, numObject[diff]];
         }
     }
 }
-console.log(twoSum([1,2,3,4,5,6], 7));
+console.log(twoSum([1, 2, 3, 4, 5, 6,], 7));
+// Output [ 0, 1 ]

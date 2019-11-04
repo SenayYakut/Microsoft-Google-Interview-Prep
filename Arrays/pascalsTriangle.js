@@ -1,4 +1,6 @@
-    
+    //Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
+
+
 var generate = function(numRows) {
     // we need the base and it will be able to build up
     let arr = [[1], [1, 1]];

@@ -60,4 +60,20 @@ var minSubArrayLen = function(s, nums) {
     return min || 0;
   };
 
-  
+  //this is my fav
+  var minSubArrayLen = function(s, nums) {
+    const sums = [0];
+    for (let k of nums) {
+        sums.push(sums[sums.length - 1] + k);
+    }
+    let min = Infinity;
+    for (let i = 0, j = 1; j < sums.length; j++) {
+        while (sums[j] - sums[i] >= s) {
+            min = Math.min(min, j - i);
+            i++;
+        }
+    }
+    return min === Infinity ? 0 : min;
+};
+
+minSubArrayLen(15, [5,1,3,5,10,7,4,9,2,8])

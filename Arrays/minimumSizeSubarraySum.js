@@ -35,3 +35,29 @@ var minSubArrayLen = function(s, nums) {
 };
 
 minSubArrayLen(15, [5,1,3,5,10,7,4,9,2,8])
+
+var minSubArrayLen = function(s, nums) {
+    if (nums.length === 0) return 0;
+    const slideWindow = [];
+    let acc = 0;
+    let min = null;
+  
+    for (let i = 0; i < nums.length + 1; i++) {
+      const num = nums[i];
+  
+      while (acc >= s) {
+        if (min === null || slideWindow.length < min) {
+          min = slideWindow.length;
+        }
+        acc = acc - slideWindow.shift();
+      }
+  
+      slideWindow.push(num);
+  
+      acc = slideWindow.reduce((a, b) => a + b, 0);
+    }
+  
+    return min || 0;
+  };
+
+  

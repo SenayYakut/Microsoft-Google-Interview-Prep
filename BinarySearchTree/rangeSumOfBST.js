@@ -1,43 +1,45 @@
-"use strict";
-//implementation of binary search tree"
-class BinarySearchTree{
-    constructor(){
-        this.root=null;
+function Node(val){
+    this.value = val;
+    this.left = null;
+    this.right = null;
+  }
+  function BinarySearchTree(){
+    this.root = null;
+  }
+
+  BinarySearchTree.prototype.push = function(val){
+    var root = this.root;
+ 
+    if(!root){
+       this.root = new Node(val);
+       return;
     }
-
-    insertNumberNode(data, left=null, right=null){
-        let Node={
-            data,left,right
-        };
-        let currentNumberNode;
-
-        if(!this.root){
-            this.root=Node;
-        }else{
-            currentNumberNode=this.root;
-            while(currentNumberNode){
-                if(data<currentNumberNode.data){
-                    if(!currentNumberNode.left){
-                        currentNumberNode.left=Node;
-                        break;
-                    }else{
-                        currentNumberNode=currentNumberNode.left;
-                    }
-                }else if(data>currentNumberNode.data){
-                    if(!currentNumberNode.right){
-                        currentNumberNode.right=Node;
-                        break;
-                    }else{
-                        currentNumberNode=currentNumberNode.right;
-                    }
-
-                }else{
-                    console.log("Try Different Value");
-                }
-            }
-        }
-    }
-}
-let BSTtest = new BinarySearchTree();
-BSTtest.insertNumberNode(10);
-
+ 
+    var currentNode = root;
+    var newNode = new Node(val); 
+ 
+    while(currentNode){
+       if(val < currentNode.value){
+           if(!currentNode.left){
+              currentNode.left = newNode;
+              break;
+           }
+           else{
+              currentNode = currentNode.left;
+         }
+      }
+      else{
+          if(!currentNode.right){
+             currentNode.right = newNode;
+             break;
+          }
+          else{
+             currentNode = currentNode.right;
+          }
+      }
+   }
+ 
+ }
+ var bst = new BinarySearchTree();
+bst.push(3);
+bst.push(2);
